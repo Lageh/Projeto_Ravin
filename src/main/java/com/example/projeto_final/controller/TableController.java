@@ -59,6 +59,7 @@ public class TableController implements audit {
                     return true;
                 }
             }
+
             case OCCUPIED -> {
                 t.setTableStatus(TableStatus.OCCUPIED);
                 audit();
