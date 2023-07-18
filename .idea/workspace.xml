@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="984ed16f-81bd-4299-8b7e-572411454238" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/CODEOWNERS" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projeto_final/controller/CommandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projeto_final/controller/CommandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projeto_final/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projeto_final/controller/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projeto_final/controller/TableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projeto_final/controller/TableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projeto_final/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projeto_final/model/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projeto_final/tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projeto_final/tests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
