@@ -6,6 +6,7 @@ import com.example.projeto_final.model.Command;
 import com.example.projeto_final.model.Table;
 import com.example.projeto_final.model.ennumeration.CommandStatus;
 import com.example.projeto_final.model.ennumeration.TableStatus;
+import com.example.projeto_final.repository.CommandRepository;
 import com.example.projeto_final.repository.TableRepository;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,24 @@ public class TableController implements audit {
 
     private TableRepository repository;
 
+    private static final TableController instance;
+
+    private TableController(){
+        this.repository = new TableRepository();
+    }
+
+    static {
+        try {
+            instance = new TableController();
+        } catch (Exception e) {
+            throw new RuntimeException("Exception occurred in creating singleton instance");
+        }
+    }
+
+    public static TableController getInstance() {
+        return instance;
+    }
+
     public void save(Table c) throws Exception {
         repository.save(c);
         audit();
@@ -22,26 +41,29 @@ public class TableController implements audit {
 
     public boolean changeTableStatus(Table t, TableStatus tableStatus) throws Exception {
         switch (tableStatus) {
-            case RESERVED:
-                if(t.getCommand().getCommandStatus() != CommandStatus.CLOSED || t.getCommand().getCommandStatus() == null){
+            case RESERVED -> {
+                if (t.getCommand().getCommandStatus() == CommandStatus.CLOSED || t.getCommand().getCommandStatus() == null) {
                     t.setTableStatus(TableStatus.RESERVED);
                     audit();
                     return true;
-                }else {
+                } else {
                     return false;
                 }
-            case FREE:
-                if(t.getCommand().getCommandStatus() == CommandStatus.CLOSED){
+            }
+            case FREE -> {
+                if (t.getCommand().getCommandStatus() == CommandStatus.OPEN) {
                     return false;
                 } else {
                     t.setTableStatus(TableStatus.FREE);
                     audit();
                     return true;
                 }
-            case OCCUPIED:
+            }
+            case OCCUPIED -> {
                 t.setTableStatus(TableStatus.OCCUPIED);
                 audit();
                 return true;
+            }
         }
         return false;
     }

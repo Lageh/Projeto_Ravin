@@ -6,12 +6,29 @@ import com.example.projeto_final.model.ennumeration.CommandStatus;
 import com.example.projeto_final.repository.CommandRepository;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 
 public class CommandController implements audit {
 
     private CommandRepository repository;
+
+    private static final CommandController instance;
+
+    private CommandController(){
+        this.repository = new CommandRepository();
+    }
+
+    static {
+        try {
+            instance = new CommandController();
+        } catch (Exception e) {
+            throw new RuntimeException("Exception occurred in creating singleton instance");
+        }
+    }
+
+    public static CommandController getInstance() {
+        return instance;
+    }
 
     public void save(Command c) throws Exception {
         repository.save(c);
@@ -57,7 +74,7 @@ public class CommandController implements audit {
     private String updatedBy;
     private LocalDateTime updatedIn;
 
-    public void closeCommand(){
+    public void closeCommand(Command command){
 
     }
 

@@ -1,6 +1,8 @@
 package com.example.projeto_final.model;
 
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Person {
     private String name;
@@ -9,6 +11,7 @@ public class Person {
     private String CPF;
     private String address;
 
+    private int age;
     private boolean isActive;
 
     public boolean isActive() {
@@ -19,6 +22,10 @@ public class Person {
         isActive = active;
     }
 
+    public int getAge() {
+        return age;
+    }
+
     public Person(String name, String phone, LocalDateTime birth, String CPF, String address, boolean isActive) {
         this.name = name;
         this.phone = phone;
@@ -26,6 +33,7 @@ public class Person {
         this.CPF = CPF;
         this.address = address;
         this.isActive = isActive;
+        this.age = (int) ChronoUnit.YEARS.between(this.birth, LocalDateTime.now());
     }
 
     public String getName() {

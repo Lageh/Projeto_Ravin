@@ -31,10 +31,21 @@ public class PersonController implements audit {
         return instance;
     }
 
-    public void save(Person p) throws Exception {
+    public boolean save(Person p) throws Exception {
+        if(p.getClass().equals(Employee.class)) {
+            if (canSaveEmployee((Employee) p)) {
+                repository.save(p);
+                this.savedLast = p;
+                audit();
+                return true;
+            }else{
+                return false;
+            }
+        }
         repository.save(p);
         this.savedLast = p;
         audit();
+        return true;
     }
 
     public Person getLast() throws Exception {
@@ -53,6 +64,9 @@ public class PersonController implements audit {
         return repository.searchByCPF(CPF);
     }
 
+    private boolean canSaveEmployee(Employee e){
+        return e.getAge() >= 18;
+    }
 
     private String createdBy;
     private LocalDateTime createdIn;
